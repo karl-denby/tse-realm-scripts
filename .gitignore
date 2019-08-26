@@ -1,3 +1,11 @@
+# some junk left on personal machines
 .DS_Store
 .vscode
+
+# Ignore config file so people don't check in there users/pass/token by accident
 config.js
+
+# Realm specific stuff
+default.realm*
+realm-object-server/
+
