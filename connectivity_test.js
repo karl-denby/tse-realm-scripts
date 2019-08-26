@@ -39,7 +39,7 @@ async function main() {
         loggedInUser = await authJwt(Config.jwt);
     }
 
-    if (loggedInUser === "") {
+    if (loggedInUser) {
         Realm.Sync.User.current.logout();
         console.log("Logout complete")
     }
