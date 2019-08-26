@@ -1,3 +1,6 @@
+# NPM/Node
+node_modules
+
 # some junk left on personal machines
 .DS_Store
 .vscode
