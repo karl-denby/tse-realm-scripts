@@ -4,17 +4,6 @@ var Config = require("./config");
 
 Realm.Sync.setLogLevel("debug");
 
-function openRealmAsUser(user) {
-    let config = user.createConfiguration({
-        sync: {
-            url: `realms://${Config.address}${Config.path}`,
-            fullSynchronization: true,
-        },
-        schema: []
-    });
-    return Realm.open(config);
-}
-
 function authUserPass(username, password, create = false) {
     let credentials = Realm.Sync.Credentials.usernamePassword(
         username,
