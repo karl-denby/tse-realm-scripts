@@ -22,13 +22,11 @@ function authUserPass(username, password, create = false) {
         create
     );
     return Realm.Sync.User.login(`https://${Config.address}`, credentials).then(user => {
-        console.log("Login complete: " + Config.username + "\nuser Identity: " + user.identity)
+        console.log(`Login complete: ${Config.username}\nUser Identity: ${user.identity}`)
     }).catch(error => {
         if (error == "AuthError: The provided credentials are invalid or the user does not exist.") {
-            // If the users doesn't exist, catch this and try to create the user
             return authUserPass(username, password, true)
         } else {
-            // Log whatever the problem was
             console.log("Login failed >> " + error)
         }
     });
@@ -37,21 +35,22 @@ function authUserPass(username, password, create = false) {
 function authJwt(jwt) {
     let credentials = Realm.Sync.Credentials.jwt(jwt)
     return Realm.Sync.User.login(`https://${Config.address}`, credentials).then(user => {
-        console.log("Login complete for " + Config.jwt + "\nuser Identity: " + user.identity)
+        console.log(`Login complete for ${Config.jwt}\nUser Identity: ${user.identity}`)
     });
 }
 
 async function main() {
 
+    let loggedInUser = ""
     if (Config.username != "" && Config.password != "") {
-        await authUserPass(Config.username, Config.password)
+        loggedInUser = await authUserPass(Config.username, Config.password)
     }
 
     if (Config.jwt != "") {
-        await authJwt(Config.jwt);
+        loggedInUser = await authJwt(Config.jwt);
     }
 
-    if (Realm.Sync.User.current) {
+    if (loggedInUser === "") {
         Realm.Sync.User.current.logout();
         console.log("Logout complete")
     }
