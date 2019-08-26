@@ -1,0 +1,15 @@
+{
+  "name": "connectivity_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "connectivity_test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "realm": "^2.29.2"
+  }
+}
