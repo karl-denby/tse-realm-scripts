@@ -19,9 +19,10 @@ const CarSchema = {
 
 const PersonSchema = {
   name: 'Person',
+  primaryKey: 'name',
   properties: {
     name: 'string',
-    birthday: 'date',
+    birthday: { type: 'date', indexed: true },
     cars: 'Car[]',
     picture: 'data?'
   }
@@ -93,6 +94,8 @@ async function main () {
   // Read
   const results = realm.objects('Person').filtered('name == $0', 'Joe')
   console.log(`Found ${results.length} people named Joe`)
+  // Update
+
 
   if (loggedInUser) {
     Realm.Sync.User.current.logout()
