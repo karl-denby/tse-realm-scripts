@@ -90,6 +90,9 @@ async function main () {
       }
     })
   })
+  // Read
+  const results = realm.objects('Person').filtered('name == $0', 'Joe')
+  console.log(`Found ${results.length} people named Joe`)
 
   if (loggedInUser) {
     Realm.Sync.User.current.logout()
