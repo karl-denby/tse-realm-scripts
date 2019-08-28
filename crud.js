@@ -82,20 +82,51 @@ async function main () {
   // Create
   realm.write(() => {
     realm.create('Person', {
-      name: 'Joe',
+      name: 'Tom',
+      birthday: '2000-01-01',
+      car: {
+        make: 'Toyota',
+        model: 'Tank',
+        miles: 12345
+      }
+    })
+    realm.create('Person', {
+      name: 'Dick',
+      birthday: '2000-01-01',
+      car: {
+        make: 'Datsun',
+        model: 'on-Do',
+        miles: 54321
+      }
+    })
+    realm.create('Person', {
+      name: 'Harry',
       birthday: '2000-01-01',
       car: {
         make: 'Honda',
-        model: 'Jazz',
-        miles: 100000
+        model: 'H100S',
+        miles: 987213
       }
     })
   })
-  // Read
-  const results = realm.objects('Person').filtered('name == $0', 'Joe')
-  console.log(`Found ${results.length} people named Joe`)
-  // Update
 
+  // Read
+  let results = realm.objects('Person').filtered('birthday == $0', '2000-01-01')
+  console.log(`Found ${results.length} people named with a birthday of 2000-01-01`)
+
+  // Update
+  results = realm.objects('Person').filtered('name == $0', 'Dick')
+  realm.write(() => {
+    results.update('birthday', '1999-09-09')
+  })
+  console.log('Update Dicks birthday')
+
+  // Delete
+  results = realm.objects('Person').filtered('name == $0', 'Harry')
+  realm.write(() => {
+    realm.delete(results)
+  })
+  console.log('Deleted Harry')
 
   if (loggedInUser) {
     Realm.Sync.User.current.logout()
