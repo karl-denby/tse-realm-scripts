@@ -4,12 +4,10 @@ This is a collection of scripts that will be useful for gathering information an
 
 ## Instructions
 
-- modify `config.js` to include your instance address, username/jwt token etc.
 - `$ npm install`
-- `$ npm <script_name>`
-
 - `$ cp example-config.js config.js`
-- Modify config.js to point to your instance
+- Modify `config.js` to include your instance address, username/jwt token etc.
+- `$ npm <script_name>`
 
 ## Available Scripts
 
