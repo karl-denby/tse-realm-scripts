@@ -4,7 +4,8 @@ const CarSchema = {
   properties: {
     make: 'string',
     model: 'string',
-    miles: { type: 'int', default: 0 }
+    distance: { type: 'int', default: 0 },
+    distance_unit: 'string'
   }
 }
 
