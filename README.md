@@ -8,6 +8,9 @@ This is a collection of scripts that will be useful for gathering information an
 - `$ npm install`
 - `$ npm <script_name>`
 
+- `$ cp example-config.js config.js`
+- Modify config.js to point to your instance
+
 ## Available Scripts
 
 ### `$node connectivity_test`
