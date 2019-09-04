@@ -6,6 +6,8 @@
     "outDir": ".."
   },
   "files": [
+    "crud.ts",
     "graph.ts",
+    "scheme_migration.ts"
   ]
 }
