@@ -1,5 +1,6 @@
 // tslint:disable: no-console
-import "./util";
+import * as configuration from "./config";
+import Realm = require("realm")
 
 function authUserPass(username, password, create = false) {
   const credentials = Realm.Sync.Credentials.usernamePassword(
@@ -7,7 +8,7 @@ function authUserPass(username, password, create = false) {
     password,
     create,
   );
-  return Realm.Sync.User.login(`https://${this.address}`, credentials).then((user) => {
+  return Realm.Sync.User.login(`https://${configuration.address}`, credentials).then((user) => {
     console.log(`Login complete: ${username}\nUser Identity: ${user.identity}`);
   }).catch((error) => {
     if (error === "AuthError: The provided credentials are invalid or the user does not exist.") {
@@ -20,19 +21,19 @@ function authUserPass(username, password, create = false) {
 
 function authJwt(jwt) {
   const credentials = Realm.Sync.Credentials.jwt(jwt);
-  return Realm.Sync.User.login(`https://${this.address}`, credentials).then((user) => {
-    console.log(`Login complete for ${this.jwt}\nUser Identity: ${user.identity}`);
+  return Realm.Sync.User.login(`https://${configuration.address}`, credentials).then((user) => {
+    console.log(`Login complete for ${configuration.jwt}\nUser Identity: ${user.identity}`);
   });
 }
 
 async function main() {
   let loggedInUser: any;
-  if (this.username !== "" && this.password !== "") {
-    loggedInUser = await authUserPass(this.username, this.password);
+  if (configuration.username !== "" && configuration.password !== "") {
+    loggedInUser = await authUserPass(configuration.username, configuration.password);
   }
 
-  if (this.jwt !== "") {
-    loggedInUser = await authJwt(this.jwt);
+  if (configuration.jwt !== "") {
+    loggedInUser = await authJwt(configuration.jwt);
   }
 
   const user = await Realm.Sync.User.current;
@@ -40,7 +41,7 @@ async function main() {
     sync: {
       error: (err) => console.log(err),
       fullSynchronization: true,
-      url: `realms://${this.address}${this.path}`,
+      url: `realms://${configuration.address}${configuration.path}`,
     },
   });
   // Async Open

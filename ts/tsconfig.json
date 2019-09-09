@@ -9,6 +9,5 @@
     "crud.ts",
     "graph.ts",
     "config.ts",
-    "util.ts"
   ]
 }
