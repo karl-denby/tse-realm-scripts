@@ -5,8 +5,9 @@ This is a collection of scripts that will be useful for gathering information an
 ## Instructions
 
 - `$ npm install`
-- `$ cp example-config.js config.js`
-- Modify `config.js` to include your instance address, username/jwt token etc.
+- `$ cp ts/example-config.ts ts/config.ts`
+- Modify `config.ts` to include your instance address, username/jwt token etc.
+- Use typescript to create the javascript files `tsc --build ts/tsconfig.json`
 - `$ npm <script_name>`
 
 ## Available Scripts
@@ -22,7 +23,7 @@ Login complete: test-user
 User Identity: d92f50b744247908056ca42e9dd409f1
 ```
 
-### `node crud.js`
+### `node crud`
 
 This script will create three people [Tom, Dick and Harry] in the configured test realm, read the created people data, perform an update to Dick's birthday and perform a delete of Harry.
 

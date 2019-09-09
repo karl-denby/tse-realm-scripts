@@ -9,5 +9,6 @@
     "crud.ts",
     "graph.ts",
     "config.ts",
+    "connectivity_test.ts"
   ]
 }
