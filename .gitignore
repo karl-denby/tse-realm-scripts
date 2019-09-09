@@ -10,4 +10,7 @@ default.realm*
 realm-object-server/
 
 # Ignore config file so people don't check in there users/pass/token by accident
-config.js
+ts/config.ts
+
+# Don't import built js files
+*.js

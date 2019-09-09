@@ -1,4 +1,4 @@
-export const address: string = "this-is-the-future.de1a.cloud.realm.io"
+export const address: string = "some-instance-name.region.cloud.realm.io"
 export const path: string = "~/test-realm"
 
 export const username: string = "test-user"
