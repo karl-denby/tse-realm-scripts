@@ -2,6 +2,30 @@
 import * as configuration from "./config";
 import Realm = require("realm")
 
+// Define your models and their properties
+const CarSchema = {
+  name: 'Car',
+  properties: {
+    make:  'string',
+    model: 'string',
+    miles: {type: 'int', default: 0},
+  }
+};
+const PersonSchema = {
+  name: 'Person',
+  properties: {
+    name:     'string',
+    birthday: 'date',
+    cars:     'Car[]',
+    picture:  'data?' // optional property
+  }
+};
+
+module.exports = {
+    CarSchema,
+    PersonSchema
+}
+
 function authUserPass(username, password, create = false) {
   const credentials = Realm.Sync.Credentials.usernamePassword(
     username,
@@ -41,8 +65,9 @@ async function main() {
     sync: {
       error: (err) => console.log(err),
       fullSynchronization: true,
-      url: `realms://${configuration.address}${configuration.path}`,
+      url: `realms://${configuration.address}/${configuration.path}`,
     },
+    schema: [CarSchema, PersonSchema]
   });
   // Async Open
   await Realm.open(config).then((realmIsOpen) => {
