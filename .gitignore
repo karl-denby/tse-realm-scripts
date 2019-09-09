@@ -14,3 +14,4 @@ ts/config.ts
 
 # Don't import built js files
 *.js
+*.js.map
