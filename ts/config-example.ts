@@ -3,6 +3,7 @@ export const path: string = "~/test-realm"
 
 export const username: string = "test-user"
 export const password: string = "test-password"
+export const confirmation_email: string = ""
 export const jwt: string = ""
 
 export const gql_endpoint: string = `graphql/${this.path}`
