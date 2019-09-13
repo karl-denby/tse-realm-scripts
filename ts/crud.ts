@@ -1,6 +1,30 @@
 // tslint:disable: no-console
+import Realm = require("realm");
 import * as configuration from "./config";
-import Realm = require("realm")
+
+// Define your models and their properties
+const CarSchema = {
+  name: "Car",
+  properties: {
+    make:  "string",
+    miles: {type: "int", default: 0},
+    model: "string",
+  },
+};
+const PersonSchema = {
+  name: "Person",
+  properties: {
+    birthday: "date",
+    cars:     "Car[]",
+    name:     "string",
+    picture:  "data?", // optional property
+  },
+};
+
+module.exports = {
+    CarSchema,
+    PersonSchema,
+};
 
 function authUserPass(username, password, create = false) {
   const credentials = Realm.Sync.Credentials.usernamePassword(
@@ -38,10 +62,11 @@ async function main() {
 
   const user = await Realm.Sync.User.current;
   const config = await user.createConfiguration({
+    schema: [CarSchema, PersonSchema],
     sync: {
       error: (err) => console.log(err),
       fullSynchronization: true,
-      url: `realms://${configuration.address}${configuration.path}`,
+      url: `realms://${configuration.address}/${configuration.path}`,
     },
   });
   // Async Open

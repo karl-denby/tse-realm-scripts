@@ -18,7 +18,7 @@
     "realm": "^2.29.2",
     "realm-graphql-client": "^1.4.0",
     "subscriptions-transport-ws": "^0.9.16",
-    "tslint": "^5.19.0",
+    "tslint": "^5.20.0",
     "typescript": "^3.6.2"
   },
   "devDependencies": {
